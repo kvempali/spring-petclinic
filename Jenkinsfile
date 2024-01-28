@@ -7,7 +7,7 @@ pipeline {
       }
     }
 
-    stage('Maven Build') {
+    stage('Maven Compile') {
       steps {
         sh 'mvn clean compile'
       }
@@ -16,7 +16,7 @@ pipeline {
     stage('Static Analysis') {
       agent any
       steps {
-        sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+        sh 'mvn sonar:sonar -Dsonar.projectKey=devopscmu-assignment-petclinic-app -Dsonar.projectName=\'devopscmu-assignment-petclinic-app\' -Dsonar.host.url=http://13.201.49.95:9000 -Dsonar.token=sqp_f72db1e138d794b8c49150429f141063c32d88fd'
       }
     }
 
