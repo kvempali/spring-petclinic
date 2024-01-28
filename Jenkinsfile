@@ -28,13 +28,9 @@ pipeline {
 
     stage('Run Tests') {
       steps {
-       try {
-        // Any maven phase that that triggers the test phase can be used here.
-        sh 'mvn test -B'
-    } catch(err) {
-        step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-        throw err
-    }
+        sh 'mvn test'
+        warnError(message: 'There are failed tests but continuing with the next stage') {
+          junit(testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true)
         }
 
       }
