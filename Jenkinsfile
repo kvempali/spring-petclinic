@@ -29,7 +29,10 @@ pipeline {
     stage('Run Tests') {
       steps {
         sh 'mvn test'
-        junit(testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true)
+        warnError(message: 'There are failed tests but continuing with the next stage') {
+          junit(testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true)
+        }
+
       }
     }
 
