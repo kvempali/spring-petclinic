@@ -29,6 +29,11 @@ pipeline {
     stage('Run Tests') {
       steps {
         sh 'mvn test'
+      }
+    }
+
+    stage('Archive Test Results') {
+      steps {
         junit(testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true)
       }
     }
