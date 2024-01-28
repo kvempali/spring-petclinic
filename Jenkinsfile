@@ -15,7 +15,10 @@ pipeline {
 
     stage('Static Analysis') {
       steps {
-        withSonarQubeEnv(installationName: 'devops-cmu-sonar', credentialsId: 'devops-cmu-pipeline-sonar-secret')
+        withSonarQubeEnv(installationName: 'devops-cmu-sonar', credentialsId: 'devops-cmu-pipeline-sonar-secret', envOnly: true) {
+          sh 'mvn sonar:sonar'
+        }
+
       }
     }
 
