@@ -28,15 +28,14 @@ pipeline {
 
     stage('Run Tests') {
       steps {
-        sh 'mvn test || exit 0'
+        sh 'mvn test'
       }
     }
-
-    stage('Archive Test Results') {
-      steps {
-        junit(testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true)
-      }
+    
+    post { 
+        always { 
+          junit(testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true) 
+        }
     }
-
   }
 }
