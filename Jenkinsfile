@@ -16,7 +16,11 @@ pipeline {
     stage('Static Analysis') {
       steps {
         withSonarQubeEnv(installationName: 'devops-cmu-sonar', credentialsId: 'devops-cmu-pipeline-sonar-secret') {
-          sh 'mvn sonar:sonar'
+          sh '''mvn sonar:sonar \\
+  -Dsonar.projectKey=devopscmu-assignment-petclinic-app \\
+  -Dsonar.projectName=\'devopscmu-assignment-petclinic-app\' \\
+  -Dsonar.host.url=http://13.201.49.95:9000 \\
+  -Dsonar.token=sqp_f72db1e138d794b8c49150429f141063c32d88fd'''
         }
 
       }
