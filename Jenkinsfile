@@ -31,11 +31,18 @@ pipeline {
         sh 'mvn test'
       }
     }
-    
-  }
-      post { 
-        always { 
-          junit(testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true) 
-        }
+
+    stage('Package') {
+      steps {
+        sh 'mvn package'
+      }
     }
+
+  }
+  post {
+    always {
+      junit(testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true)
+    }
+
+  }
 }
