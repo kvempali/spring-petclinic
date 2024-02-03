@@ -18,7 +18,7 @@ pipeline {
         sh '''mvn sonar:sonar \\
   -Dsonar.projectKey=devopscmu-assignment-petclinic-app \\
   -Dsonar.projectName=\'devopscmu-assignment-petclinic-app\' \\
-  -Dsonar.host.url=http://http://65.0.72.229:9000 \\
+  -Dsonar.host.url=http://65.0.72.229:9000 \\
   -Dsonar.token=sqp_f72db1e138d794b8c49150429f141063c32d88fd'''
       }
     }
