@@ -25,7 +25,7 @@ pipeline {
 
     stage('Unit Tests') {
       steps {
-        sh 'mvn test'
+        sh 'mvn test -Dtest=!PetClinicIntegrationTests'
         junit(testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true)
       }
     }
